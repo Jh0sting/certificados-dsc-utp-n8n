@@ -1,0 +1,53 @@
+version: '3.8'
+
+networks:
+  automation-net:
+    name: automation-net
+    driver: bridge
+
+volumes:
+  n8n_data:
+    driver: local
+
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    restart: unless-stopped
+    ports:
+      - 5678:5678
+    environment:
+      - N8N_HOST=${N8N_HOST}
+      - N8N_PORT=${N8N_PORT}
+      - N8N_PROTOCOL=${N8N_PROTOCOL}
+      - WEBHOOK_URL=${WEBHOOK_URL}
+      - N8N_TRUST_PROXY=true
+      - GENERIC_TIMEZONE=America/Lima
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+    networks:
+      - automation-net
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: ngrok
+    restart: unless-stopped
+    command: http n8n:5678 --domain=${NGROK_DOMAIN}
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    depends_on:
+      - n8n
+    networks:
+      - automation-net
+
+  gotenberg:
+    image: gotenberg/gotenberg:8.32.0
+    restart: unless-stopped
+    command:
+      - gotenberg
+      - --api-disable-health-check-route-telemetry
+      - --api-timeout=60s
+      - --chromium-auto-start=true
+    networks:
+      - automation-net
+    

@@ -1,0 +1,17 @@
+# Secrets / local config
+.env
+.env.*
+!.env.example
+
+# n8n runtime data (SQLite DB with encrypted credentials, binary files, etc.)
+n8n_data/
+
+# Local DB backups
+backups/
+
+# OS junk
+.DS_Store
+
+# Editor / tooling
+.kombai/
+*.log
