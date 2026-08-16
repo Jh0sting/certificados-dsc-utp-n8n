@@ -12,7 +12,7 @@
       "typeVersion": 1,
       "position": [
         -128,
-        240
+        344
       ],
       "webhookId": "c65fbb00-9639-4d17-a384-8817655556be",
       "credentials": {
@@ -38,8 +38,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        112,
-        256
+        320,
+        344
       ]
     },
     {
@@ -51,7 +51,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        464,
+        1440,
         80
       ]
     },
@@ -65,8 +65,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1376,
-        240
+        1664,
+        80
       ]
     },
     {
@@ -109,8 +109,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1568,
-        240
+        1888,
+        344
       ],
       "retryOnFail": true,
       "maxTries": 3,
@@ -131,8 +131,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1,
       "position": [
-        1760,
-        240
+        2112,
+        248
       ],
       "webhookId": "b5977964-a433-4c1f-a4f4-ba6110f7f6f6",
       "credentials": {
@@ -145,7 +145,7 @@
     {
       "parameters": {
         "chatId": "={{ $json.message.chat.id }}",
-        "text": "=Selecciona el tema del certificado para: {{ $json.message.text.replace('/certificado ', '') }}",
+        "text": "=Selecciona el tema del certificado para: {{ $json.message.text.replace('/certificado', '').trim() }}",
         "replyMarkup": "inlineKeyboard",
         "inlineKeyboard": {
           "rows": [
@@ -155,13 +155,13 @@
                   {
                     "text": "☀️ Claro",
                     "additionalFields": {
-                      "callback_data": "=claro|{{ $json.message.text.replace('/certificado ', '') }}"
+                      "callback_data": "=claro|{{ $json.message.text.replace('/certificado', '').trim() }}"
                     }
                   },
                   {
                     "text": "🌙 Oscuro",
                     "additionalFields": {
-                      "callback_data": "=oscuro|{{ $json.message.text.replace('/certificado ', '') }}"
+                      "callback_data": "=oscuro|{{ $json.message.text.replace('/certificado', '').trim() }}"
                     }
                   }
                 ]
@@ -176,8 +176,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1,
       "position": [
-        720,
-        240
+        768,
+        224
       ],
       "webhookId": "7106e7eb-c590-4851-a868-61af4bfa77f5",
       "credentials": {
@@ -274,8 +274,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
       "position": [
-        368,
-        384
+        544,
+        480
       ],
       "id": "46c0cddb-739b-4537-b15d-6d08c9b32a38",
       "name": "Switch"
@@ -289,8 +289,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        720,
-        400
+        768,
+        416
       ],
       "id": "231cedac-9443-487b-be70-5ea260650d8e",
       "name": "Pedir excel",
@@ -311,8 +311,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        720,
-        592
+        768,
+        608
       ],
       "id": "82c4495b-2e51-4809-935a-9a319bbc257f",
       "name": "Documento recibido",
@@ -332,8 +332,8 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1.1,
       "position": [
-        928,
-        592
+        992,
+        608
       ],
       "id": "632b3155-8687-4018-96c1-ad5a471030b2",
       "name": "Extract from File"
@@ -346,8 +346,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1136,
-        592
+        1216,
+        608
       ],
       "id": "eaedd282-76db-46b6-ac2e-ee64287daf38",
       "name": "Preparar certificados"
@@ -359,8 +359,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1344,
-        592
+        1664,
+        608
       ],
       "id": "04e062be-6465-4192-be84-e1703dcd7738",
       "name": "Generar HTML Combinado"
@@ -374,8 +374,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        720,
-        768
+        768,
+        800
       ],
       "id": "cc03bf67-59ce-41cf-936c-06cf5e66564f",
       "name": "Enviar ayuda",
@@ -396,8 +396,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -8,
-        240
+        96,
+        344
       ]
     },
     {
@@ -430,8 +430,8 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        688,
-        528
+        1440,
+        608
       ]
     },
     {
@@ -445,8 +445,50 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1,
       "position": [
-        980,
-        560
+        2112,
+        440
+      ],
+      "webhookId": "95a2a122-1f74-4f9e-9836-cccf597a17db",
+      "credentials": {
+        "telegramApi": {
+          "id": "wbBcvYnt5IjHXhbQ",
+          "name": "Bot Certificado"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.message.text.replace('/certificado', '').trim().length > 0 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "9590f9b4-3ab2-402e-8d0b-6c3e5248cebb",
+      "name": "¿Tiene Nombre?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        280,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "✍️ Falta el nombre del participante. Escribe el comando así:\n/certificado Juan Pérez",
+        "additionalFields": {}
+      },
+      "id": "65319375-4692-4656-a031-5563273b29ab",
+      "name": "Pedir Nombre",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        280,
+        520
       ],
       "credentials": {
         "telegramApi": {
@@ -535,7 +577,7 @@
       "main": [
         [
           {
-            "node": "Botones Claro/Oscuro",
+            "node": "¿Tiene Nombre?",
             "type": "main",
             "index": 0
           }
@@ -623,6 +665,24 @@
         [
           {
             "node": "Generar HTML Combinado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Tiene Nombre?": {
+      "main": [
+        [
+          {
+            "node": "Botones Claro/Oscuro",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Pedir Nombre",
             "type": "main",
             "index": 0
           }

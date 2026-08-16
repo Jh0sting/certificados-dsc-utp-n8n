@@ -68,6 +68,7 @@ Este workflow pasó por una revisión de código como si fuera producción real,
 - **DRY en el logo/plantilla**: el logo en base64 (~24 KB) estaba duplicado 4 veces entre los dos generadores de HTML (individual y por lote), y las plantillas ya habían empezado a divergir visualmente (sombras, posición del footer). Ahora los logos se cargan **una sola vez** en `Cargar Logos` usando el *static data* del workflow (`$getWorkflowStaticData`), y ambas plantillas quedaron alineadas.
 - **Manejo de errores en el paso crítico**: la llamada a Gotenberg (conversión a PDF) tiene reintentos automáticos (3 intentos) y, si falla de todas formas, el usuario recibe un mensaje de error en Telegram en vez de quedarse sin respuesta.
 - **Validación de datos del Excel**: se agregó un filtro que descarta filas sin nombre antes de generar certificados en el modo `/masivo`, evitando páginas en blanco por filas vacías o mal formateadas.
+- **Validación del comando `/certificado`**: si el usuario envía el comando sin nombre (`.replace('/certificado ', '')` no encontraba coincidencia sin el espacio final), el bot generaba un certificado con el nombre literal `"/certificado"`. Se corrigió la extracción del texto y se agregó un nodo `¿Tiene Nombre?` que le pide el nombre al usuario en vez de generar un PDF con datos basura.
 
 ### Mejoras futuras (documentadas, no implementadas aún)
 
